@@ -6,6 +6,14 @@ from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
 
+
+name = '邱柏鈞'
+phone_number = '0975043570'
+gmail = 'm231860820@gmail.com'
+
+
+
+
 options = webdriver.ChromeOptions() 
 options.add_argument("start-maximized")
 driver = uc.Chrome(options=options)
@@ -38,11 +46,11 @@ while 1:
 
 WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-gsnTZi.gFJNgI'))).click()#點擊完成預定
 
-WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-kgflAQ.jyOblS'))).send_keys('邱筠臻')
+WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-kgflAQ.jyOblS'))).send_keys(name)
 
-WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-kgflAQ.bPketa'))).send_keys('0975043571')
+WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-kgflAQ.bPketa'))).send_keys(phone_number)
 
-WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-kgflAQ.efemDB'))).send_keys('m231860821@gmail.com')
+WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-kgflAQ.efemDB'))).send_keys(gmail)
 
 WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-gsnTZi.eosxOG'))).click()#選擇聚會目的
 
