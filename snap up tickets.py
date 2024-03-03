@@ -3,28 +3,28 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
+from time import monotonic, sleep
 
 
-name = '邱柏鈞'
-phone_number = '0975043570'
-gmail = 'm231860820@gmail.com'
+name = '邱筠臻'
+phone_number = '0975043571'
+gmail = 'm231860821@gmail.com'
 
 
 options = webdriver.ChromeOptions() 
 options.add_argument("start-maximized")
 driver = uc.Chrome(options=options)
-driver.implicitly_wait(0.8)
-driver.get('https://inline.app/booking/-MeNcbDasiIykiow2Hfb:inline-live-2/-NLRXZWFIRJBhOSk1d_h')
+#driver.implicitly_wait(0.8)
+driver.get('https://inline.app/booking/-MeNcbDasiIykiow2Hfb:inline-live-2/-N3JQxh1vIZe9tECk0Pg')
 
 
 #https://inline.app/booking/-MeNcbDasiIykiow2Hfb:inline-live-2/-N3JQxh1vIZe9tECk0Pg
 lst_time = ['19', '17', '13', '11']#可選擇的時間
-i = 0
 
 while 1:
     try: 
-        
+        i = 0
+        start = monotonic()
         loc_button = WebDriverWait(driver, 1, 0.3).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-dmRaPn.GmkPw')))#找到定位的位置
         
         driver.execute_script('arguments[0].scrollIntoView()', loc_button)#下滑
@@ -32,32 +32,74 @@ while 1:
         driver.execute_script('arguments[0].scrollIntoView()', loc_button)#下滑X2
         sleep(0.3)#再等一下
 
-        
         while 1:
             
             try: 
-                time_button = WebDriverWait(driver, 0.3).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-{}-00'.format(lst_time[i]))))
+                time_button = driver.find_element(By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-{}-00'.format(lst_time[i]))
+                #WebDriverWait(driver, 0.3).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-{}-00'.format(lst_time[i]))))
+                end = monotonic()
                 break
             except:
+                if i == 3:
+                    end = monotonic()
+                    break
                 i += 1
-            
+
+
+
+        '''
+        try:
+            time_button = driver.find_element(By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-19-00')
+            #WebDriverWait(driver, 0.3, 0.1).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-19-00')))
+        except:
+            #print('19點沒位置')
+            end = monotonic()
+            pass
+        
+        try:
+            time_button = driver.find_element(By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-17-00')
+            #WebDriverWait(driver, 0.3, 0.1).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-17-00')))
+        except:
+            #print('17點沒位置')
+            end = monotonic()
+            pass
+        
+        try:
+            time_button = driver.find_element(By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-13-00')
+            #WebDriverWait(driver, 0.3, 0.1).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-13-00')))
+        except:
+            #print('13點沒位置')
+            end = monotonic()
+            pass
+        
+        try:
+            time_button = driver.find_element(By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-11z-00')
+            #WebDriverWait(driver, 0.3, 0.1).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-11-00')))
+        except:
+            #print('11點沒位置')
+            end = monotonic()
+            pass
+        '''         
             
         time_button.click() #點選時間按鈕
         print('訂位時間為{}點'.format(lst_time[i]))
+        
         break
     except:
+        print(end - start)
         driver.refresh() # 重整頁面
-        i = 0
         
-WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-gsnTZi.gFJNgI'))).click()#點擊完成預定
+        i = 0
+end = monotonic()
+WebDriverWait(driver,5, 0.1).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-gsnTZi.gFJNgI'))).click()#點擊完成預定
 
-WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-kgflAQ.jyOblS'))).send_keys(name)#輸入姓名
+WebDriverWait(driver,5, 0.1).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-kgflAQ.jyOblS'))).send_keys(name)#輸入姓名
 
-WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-kgflAQ.bPketa'))).send_keys(phone_number)#輸入電話
+WebDriverWait(driver,5, 0.1).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-kgflAQ.bPketa'))).send_keys(phone_number)#輸入電話
 
-WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-kgflAQ.efemDB'))).send_keys(gmail)#輸入電子信箱
+WebDriverWait(driver,5, 0.1).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-kgflAQ.efemDB'))).send_keys(gmail)#輸入電子信箱
 
-WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-gsnTZi.eosxOG'))).click()#選擇聚會目的
-
-#WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-gsnTZi.gFJNgI'))).click()#送出
+WebDriverWait(driver,5, 0.1).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-gsnTZi.eosxOG'))).click()#選擇聚會目的
+print(end - start)
+WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-gsnTZi.gFJNgI'))).click()#送出
 
