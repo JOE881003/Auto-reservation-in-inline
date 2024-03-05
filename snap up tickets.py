@@ -13,6 +13,7 @@ gmail = 'm231860821@gmail.com'
 
 options = webdriver.ChromeOptions() 
 options.add_argument("start-maximized")
+#options.add_argument('--disable-images') 
 driver = uc.Chrome(options=options)
 #driver.implicitly_wait(0.8)
 driver.get('https://inline.app/booking/-MeNcbDasiIykiow2Hfb:inline-live-2/-N3JQxh1vIZe9tECk0Pg')
@@ -99,6 +100,7 @@ while 1:
         print(end - start)
         print('訂位時間為{}點'.format(lst_time[i]))
         
+        sleep(5)
         #break
     except:
         print(end - start)
