@@ -32,7 +32,10 @@ while 1:
         sleep(0.3)#等一下
         driver.execute_script('arguments[0].scrollIntoView()', loc_button)#下滑X2
         sleep(0.3)#再等一下
-
+        
+        driver.find_element(By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-19-00').click() #點選時間按鈕
+       
+        '''
         while 1:
             
             try: 
@@ -48,7 +51,7 @@ while 1:
 
 
 
-        '''
+        
         try:
             time_button = driver.find_element(By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-19-00')
             #WebDriverWait(driver, 0.3, 0.1).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-19-00')))
@@ -82,8 +85,8 @@ while 1:
             pass
         '''         
             
-        time_button.click() #點選時間按鈕
-        end = monotonic()
+
+        #end = monotonic()
         
         WebDriverWait(driver,5, 0.1).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-gsnTZi.gFJNgI'))).click()#點擊完成預定
         
@@ -97,13 +100,13 @@ while 1:
         
         WebDriverWait(driver,5, 0.1).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-gsnTZi.gFJNgI'))).click()#送出
         
-        print(end - start)
+       #print(end - start)
         print('訂位時間為{}點'.format(lst_time[i]))
         
         sleep(5)
         #break
     except:
-        print(end - start)
+        #print(end - start)
         driver.refresh() # 重整頁面
         
 
