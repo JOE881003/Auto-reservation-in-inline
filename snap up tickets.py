@@ -13,14 +13,14 @@ gmail = 'm231860821@gmail.com'
 
 options = webdriver.ChromeOptions() 
 options.add_argument("start-maximized")
-#options.add_argument('--disable-images') 
+options.add_argument('--disable-images') 
 driver = uc.Chrome(options=options)
 #driver.implicitly_wait(0.8)
 driver.get('https://inline.app/booking/-MeNcbDasiIykiow2Hfb:inline-live-2/-N3JQxh1vIZe9tECk0Pg')
 
 
 #https://inline.app/booking/-MeNcbDasiIykiow2Hfb:inline-live-2/-N3JQxh1vIZe9tECk0Pg
-lst_time = ['19', '17', '13', '11']#可選擇的時間
+lst_time = ['19', '17', '13', '11', '15']#可選擇的時間
 
 while 1:
     try: 
@@ -33,9 +33,9 @@ while 1:
         driver.execute_script('arguments[0].scrollIntoView()', loc_button)#下滑X2
         sleep(0.3)#再等一下
         
-        driver.find_element(By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-19-00').click() #點選時間按鈕
+        #driver.find_element(By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-19-00').click() #點選時間按鈕
        
-        '''
+        
         while 1:
             
             try: 
@@ -44,14 +44,14 @@ while 1:
                 end = monotonic()
                 break
             except:
-                if i == 3:
+                if i == 4:
                     end = monotonic()
                     break
                 i += 1
 
+        time_button.click()
 
-
-        
+        '''
         try:
             time_button = driver.find_element(By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-19-00')
             #WebDriverWait(driver, 0.3, 0.1).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-19-00')))
@@ -103,7 +103,7 @@ while 1:
        #print(end - start)
         print('訂位時間為{}點'.format(lst_time[i]))
         
-        sleep(5)
+        sleep(4)
         #break
     except:
         #print(end - start)
