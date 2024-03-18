@@ -7,7 +7,7 @@ from time import monotonic, sleep
 
 
 name = '邱筠臻'
-phone_number = '0975043571'
+phone_number = '0989320707'
 gmail = 'm231860821@gmail.com'
 
 
@@ -18,6 +18,8 @@ driver = uc.Chrome(options=options)
 #driver.implicitly_wait(0.8)
 driver.get('https://inline.app/booking/-MeNcbDasiIykiow2Hfb:inline-live-2/-N3JQxh1vIZe9tECk0Pg')
 
+zoom_out = "document.body.style.zoom='0.3'"
+
 
 #https://inline.app/booking/-MeNcbDasiIykiow2Hfb:inline-live-2/-N3JQxh1vIZe9tECk0Pg
 lst_time = ['19', '17', '13', '11', '15']#可選擇的時間
@@ -25,27 +27,27 @@ lst_time = ['19', '17', '13', '11', '15']#可選擇的時間
 while 1:
     try: 
         i = 0
-        start = monotonic()
-        loc_button = WebDriverWait(driver, 1, 0.3).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-dmRaPn.GmkPw')))#找到定位的位置
+        #start = monotonic()
+        #loc_button = WebDriverWait(driver, 1, 0.3).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-dmRaPn.GmkPw')))#找到定位的位置
         
-        driver.execute_script('arguments[0].scrollIntoView()', loc_button)#下滑
-        sleep(0.3)#等一下
-        driver.execute_script('arguments[0].scrollIntoView()', loc_button)#下滑X2
-        sleep(0.3)#再等一下
+        #driver.execute_script('arguments[0].scrollIntoView()', loc_button)#下滑
+        #sleep(0.3)#等一下
+        #driver.execute_script('arguments[0].scrollIntoView()', loc_button)#下滑X2
+        #sleep(0.3)#再等一下
         
         #driver.find_element(By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-19-00').click() #點選時間按鈕
-       
+        driver.execute_script(zoom_out)
         
         while 1:
             
             try: 
-                time_button = driver.find_element(By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-{}-00'.format(lst_time[i]))
-                #WebDriverWait(driver, 0.3).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-{}-00'.format(lst_time[i]))))
-                end = monotonic()
+                #time_button = driver.find_element(By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-{}-00'.format(lst_time[i]))
+                time_button = WebDriverWait(driver, 0.2, 0.1).until(EC.presence_of_element_located((By.CLASS_NAME, 'sc-bZnhIo.gKUXOr.time-slot.time-slot-{}-00'.format(lst_time[i]))))
+
                 break
             except:
                 if i == 4:
-                    end = monotonic()
+    
                     break
                 i += 1
 
