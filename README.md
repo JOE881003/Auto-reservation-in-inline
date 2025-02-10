@@ -14,13 +14,14 @@ and this section of code
 ```
 lst_time = ['19', '17', '13', '11', '15']
 ```
+allows you to select the time you would like to dine at the restaurant in a 24-hour format.
 
 Enter the Inline reservation URL you want to automate in the code below.
 ```
 driver.get('https://inline.app/booking/-MeNcbDasiIykiow2Hfb:inline-live-2/-N3JQxh1vIZe9tECk0Pg')
 ```
 
-allows you to select the time you would like to dine at the restaurant in a 24-hour format.
+
 
 
 ### Once everything is set up, you can run the program and wait for the restaurant to release reservation slots!
