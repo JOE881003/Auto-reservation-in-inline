@@ -6,9 +6,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
 
-name = '邱筠臻'
-phone_number = '0989320707'
-gmail = 'm231860821@gmail.com'
+name = '廖昱凱'
+phone_number = 'xxxxxxxxxx'
+gmail = 'xxxxxxxxx@gmail.com'
 
 
 options = webdriver.ChromeOptions() 
